@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Blog.Models.BlogPost>
+
+@{
+    ViewBag.Title = "My MVC Blog";
+}
+
+<p>
+    @Html.ActionLink("New Post", "Create")
+</p>
+
+@foreach (var item in Model) {
+    <h2>@Html.ActionLink(item.Title, "Details", new { id=item.ID })</h2>
+    <h3>Posted on @Html.DisplayFor(modelItem => item.PostDate), last update on @Html.DisplayFor(modelItem => item.UpDate).</h3>
+    <p>
+        @MvcHtmlString.Create(Html.Encode(item.Content).Replace(Environment.NewLine, "<br/>"))
+    </p>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+        @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+    </p>
+}

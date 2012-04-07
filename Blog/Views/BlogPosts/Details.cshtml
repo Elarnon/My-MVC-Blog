@@ -1,0 +1,15 @@
+﻿@model Blog.Models.BlogPost
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Html.DisplayFor(model => model.Title)</h2>
+<h3>Posted on @Html.DisplayFor(model => model.PostDate), last update on @Html.DisplayFor(model => model.UpDate).</h3>
+<p>
+    @MvcHtmlString.Create(Html.Encode(Model.Content).Replace(Environment.NewLine, "<br/>"))
+</p>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Delete", "Delete", new { id=Model.ID })
+</p>

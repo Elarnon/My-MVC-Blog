@@ -1,0 +1,7 @@
+c:\users\marjorie\documents\visual studio 2010\Projects\Blog\Blog\bin\Blog.dll
+c:\users\marjorie\documents\visual studio 2010\Projects\Blog\Blog\bin\Blog.pdb
+c:\users\marjorie\documents\visual studio 2010\Projects\Blog\Blog\bin\EntityFramework.dll
+c:\users\marjorie\documents\visual studio 2010\Projects\Blog\Blog\bin\EntityFramework.xml
+c:\users\marjorie\documents\visual studio 2010\Projects\Blog\Blog\obj\Debug\ResolveAssemblyReference.cache
+c:\users\marjorie\documents\visual studio 2010\Projects\Blog\Blog\obj\Debug\Blog.dll
+c:\users\marjorie\documents\visual studio 2010\Projects\Blog\Blog\obj\Debug\Blog.pdb

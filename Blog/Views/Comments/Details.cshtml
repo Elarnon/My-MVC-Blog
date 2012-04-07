@@ -1,0 +1,40 @@
+﻿@model Blog.Models.Comment
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Comment</legend>
+
+    <div class="display-label">BlogPostID</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BlogPostID)
+    </div>
+
+    <div class="display-label">ParentID</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ParentID)
+    </div>
+
+    <div class="display-label">CommentDate</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CommentDate)
+    </div>
+
+    <div class="display-label">Author</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Author)
+    </div>
+
+    <div class="display-label">Content</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Content)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
