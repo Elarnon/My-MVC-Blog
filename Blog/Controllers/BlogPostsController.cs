@@ -28,10 +28,13 @@ namespace Blog.Controllers
         public ViewResult Details(int id)
         {
             BlogPost blogpost = db.BlogPosts.Find(id);
-            IEnumerable<Comment> comments = from comment in dbComments.Comments
+            List<Comment> comments = (from comment in dbComments.Comments
                                where comment.BlogPostID == id
-                               select comment;
-            return View(blogpost);
+                               orderby comment.ParentID, comment.ID
+                               select comment).ToList();
+            System.Collections.Generic.KeyValuePair<BlogPost, List<Comment>> pair =
+                new KeyValuePair<BlogPost, List<Comment>>(blogpost, comments);
+            return View(pair);
         }
 
         //
@@ -99,7 +102,14 @@ namespace Blog.Controllers
 
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
-        {            
+        {
+            IEnumerable<Comment> comments = from comment in dbComments.Comments
+                               where comment.BlogPostID == id
+                               select comment;
+            foreach (Comment comment in comments)
+            {
+                dbComments.Comments.Remove(comment);
+            }
             BlogPost blogpost = db.BlogPosts.Find(id);
             db.BlogPosts.Remove(blogpost);
             db.SaveChanges();
