@@ -1,0 +1,7 @@
+*user
+*suo
+_Resharper*
+Blog/App_Data/*
+bin
+obj
+packages/

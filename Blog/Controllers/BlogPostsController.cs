@@ -113,6 +113,7 @@ namespace Blog.Controllers
             BlogPost blogpost = db.BlogPosts.Find(id);
             db.BlogPosts.Remove(blogpost);
             db.SaveChanges();
+            // TODO: dbComments changes are not staged!!!
             return RedirectToAction("Index");
         }
 

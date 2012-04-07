@@ -1,24 +1,28 @@
-﻿@model KeyValuePair<Blog.Models.BlogPost, List<Blog.Models.Comment>>
-
+﻿@using Blog.Models
+@model KeyValuePair<Blog.Models.BlogPost, List<Blog.Models.Comment>>
 @{
     ViewBag.Title = "Details";
-    Blog.Models.Comment newComment;
 }
-
 <h2>@Html.DisplayFor(model => model.Key.Title)</h2>
-<h3>Posted on @Html.DisplayFor(model => model.Key.PostDate), last update on @Html.DisplayFor(model => model.Key.UpDate).</h3>
+<h3>
+    Posted on @Html.DisplayFor(model => model.Key.PostDate), last update on @Html.DisplayFor(model => model.Key.UpDate).</h3>
 <p>
     @MvcHtmlString.Create(Html.Encode(Model.Key.Content).Replace(Environment.NewLine, "<br/>"))
 </p>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.Key.ID }) |
-    @Html.ActionLink("Delete", "Delete", new { id=Model.Key.ID })
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Key.ID }) |
+    @Html.ActionLink("Delete", "Delete", new { id = Model.Key.ID })
 </p>
-<h3>Comments:</h3>
-@foreach (var item in Model.Value) {
-    <p><strong>@Html.DisplayFor(modelItem => item.Author)</strong><br />
-    <em>Posted on @Html.DisplayFor(modelItem => item.CommentDate).</em>
-    @MvcHtmlString.Create(Html.Encode(item.Content).Replace(Environment.NewLine, "<br/>"))
-        @Html.ActionLink("Delete", "DeleteComment", new { id=item.ID })
+<h3>
+    Comments:</h3>
+@Html.Partial("_BlogPostComment", new Comment { BlogPostID = Model.Key.ID })
+@foreach (var item in Model.Value)
+{
+    <p>
+        <strong>@Html.DisplayFor(modelItem => item.Author)</strong><br />
+        <em>Posted on @Html.DisplayFor(modelItem => item.CommentDate).</em>
+        @Html.Raw(Html.Encode(item.Content).Replace(Environment.NewLine, "<br/>"))
+        @* You have to use a four-parameter overload to specify the controller. *@
+        @Html.ActionLink("Delete", "Delete", "Comments", new { id = item.ID }, null)
     </p>
 }
